@@ -1,97 +1,105 @@
 
 
-<nav class="navbar navbar-expand-lg sticky-top border-bottom">
-
-    <div class="container-fluid px-4">
-        <a class="navbar-brand d-flex align-items-center" href="/listings">
-            <i class="fa-brands fa-airbnb " id="brand"></i>
-            airbnb
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top shadow-sm">
+    <div class="container-fluid px-3 px-md-4">
+        <a class="navbar-brand text-theme  fs-5" href="/listings">
+            <i class="fas fa-atlas"></i><i>StayScape</i>
         </a>
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">
 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
-
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-
-            <ul class="navbar-nav">
-
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-
-                    <a class="nav-link" href="/listings">
-                        Explore
-                    </a>
-
+                    <a class="nav-link text-muted  small nav-list" href="/listings"><i class="fa-solid fa-globe me-1"></i>Explore</a>
                 </li>
-
             </ul>
-            <form class="d-flex search-form mx-auto" role="search">
 
+            <form class="d-flex align-items-center my-2 my-md-0 mx-md-auto" style="max-width: 420px; width: 100%;" role="search" action="/listings" method="GET">
                 <input
-                    class="form-control me-2"
+                    class="form-control me-2 rounded-pill"
                     type="search"
-                    placeholder="Search destination"
-                    id="search-input">
-
-                <button class="btn" id="search-btn" type="submit">
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                    Search
-
+                    name="q"
+                    value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+                    placeholder="Search destination, city..."
+                    aria-label="Search">
+                <button class="btn btn-theme rounded-pill px-3 text-nowrap d-inline-flex align-items-center justify-content-center" type="submit">
+                    <i class="fa-solid fa-magnifying-glass me-1"></i>Search
                 </button>
-
             </form>
 
-            <ul class="navbar-nav right-nav ms-auto d-flex flex-row align-items-center">
-
-                <li class="nav-item">
-
-                    <a class="nav-link" href="/listings/new">
-                        Host Your Place
-                    </a>
-
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0 align-items-md-center">
+                <li class="nav-item ">
+                    <a class="nav-link  text-muted  small nav-list " href="/listings/new"><i class="fa-solid fa-circle-plus me-1 text-theme"></i>Add Property</a>
                 </li>
 
-                <% if(!currentUser){ %>
+               <% if (!currentUser) { %>
+                   
+    <!-- User is NOT logged in -->
 
-                    <li class="nav-item">
+    <li class="nav-item  nav-list">
+        <a class="nav-link text-dark nav-list" href="/signup">
+            <i class="fa-solid fa-user-plus me-1"></i>
+            Sign Up
+        </a>
+    </li>
 
-                        <a class="nav-link fw-bold" href="/signup"><i class="fa-solid fa-circle-user"></i>
-                            Sign Up
-                        </a>
+    <li class="nav-item nav-list">
+        <a class="btn btn-outline-theme rounded-pill ms-md-2 px-3 py-1"
+           href="/login">
+            <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
+            Log In
+        </a>
+    </li>
 
-                    </li>
 
-                    <li class="nav-item">
+<% } else { %>
 
-                        <a class="nav-link fw-bold" href="/login">
-                            Log In
-                        </a>
+    <!-- User IS logged in -->
 
-                    </li>
+    <li class="nav-item dropdown">
 
-                <% } else { %>
+        <a class="nav-link dropdown-toggle text-dark nav-list"
+           href="#"
+           role="button"
+           data-bs-toggle="dropdown"
+           aria-expanded="false">
 
-                    <li class="nav-item">
+            <i class="fa-regular fa-circle-user me-1 text-theme"></i>
+            
+             <%= currentUser.username %>
 
-                        <a class="nav-link fw-bold" href="/logout"><i class="fa-solid fa-right-to-bracket"></i>
-                            Log Out
-                        </a>
+        </a>
 
-                    </li>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
 
-                <% } %>
+            <li>
+                <a class="dropdown-item" href="/listings">
+            <i class="fa-regular fa-circle-user me-1 text-theme"></i>
 
+                    Account
+                </a>
+            </li>
+
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+
+            <li>
+                <a class="dropdown-item text-danger" href="/logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>
+                    Log Out
+                </a>
+            </li>
+
+        </ul>
+
+    </li>
+
+<% } %>
             </ul>
-
         </div>
-
     </div>
-
 </nav>

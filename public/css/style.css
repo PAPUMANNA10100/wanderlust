@@ -1,231 +1,131 @@
-body{
-    background-color: aqua;
-    display:flex;
+/* StayScape Stylesheet - Royal Indigo Theme */
+
+body {
+    display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #f8f9fa;
+    color: #1e293b;
 }
-.container{
+
+.container {
     flex: 1;
-
-}
-/*nav bar*/
-/* =======================
-        NAVBAR
-======================= */
-
-.navbar{
-   background-color: #ffffff;
-    border-bottom: 1px solid #dddddd;
-    height:5rem;
 }
 
-.navbar-brand{
-    font-size:1.8rem;
-    font-weight:700;
-    color:#fe424d !important;
-    margin-right:.1rem;
+/* Original Airbnb Color Utilities (#fe424d) */
+.text-theme,
+.text-teal {
+    color: #fe424d !important;
 }
 
-#brand{
-    color:#fe424d;
-    font-size:2rem;
+.bg-theme,
+.bg-teal {
+    background-color: #fe424d !important;
 }
 
-.navbar-nav:first-of-type .nav-link{
-    margin-left:0;
-    padding-left:.3rem;
-    padding-right:.5rem;
+.bg-theme-subtle {
+    background-color: #fff1f2 !important;
 }
 
-.search-form{
-    width:380px;
+.btn-theme,
+.btn-teal {
+    background-color: #fe424d !important;
+    border-color: #fe424d !important;
+    color: #ffffff !important;
 }
 
-#search-input{
-    border-radius:30px;
-    padding:.6rem 1.5rem;
-    font-size:.95rem;
+.btn-theme:hover,
+.btn-teal:hover {
+    background-color: #e00b41 !important;
+    border-color: #e00b41 !important;
+    color: #ffffff !important;
 }
 
-#search-btn{
-    background:#fe424d;
-    color:#fff;
-    border:none;
-    border-radius:30px;
-    padding:10px 22px;
-    min-width:130px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
+.btn-outline-theme,
+.btn-outline-teal {
+    border-color: #fe424d !important;
+    color: #fe424d !important;
 }
 
-#search-btn:hover{
-    background:#e63946;
-    color:#fff;
+.btn-outline-theme:hover,
+.btn-outline-teal:hover {
+    background-color: #fe424d !important;
+    border-color: #fe424d !important;
+    color: #ffffff !important;
 }
 
-#search-btn i{
-    margin:0;
+/* Avatar Circle */
+.avatar-circle {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
 }
 
-.right-nav .nav-link{
-    margin-left:15px;
-    white-space:nowrap;
+/* Category Filter Bar */
+.filters {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    scrollbar-width: none;
 }
 
-@media(max-width:991px){
-
-    .navbar{
-        height:auto;
-        padding:1rem 0;
-    }
-
-    .search-form{
-        width:100%;
-        margin:1rem 0;
-    }
-
-    .right-nav{
-        flex-direction:column !important;
-        align-items:flex-start !important;
-    }
-
-    .right-nav .nav-link{
-        margin-left:0;
-        margin-top:8px;
-    }
+.filters::-webkit-scrollbar {
+    display: none;
 }
 
-
-/*footer*/
-/* Footer */
-
-footer{
-    background:#ededee;
-    padding:1rem 2rem;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:1rem;
-}
-
-.ft-info{
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:1rem;
-}
-
-.ft-info ul{
-    margin:0;
-    padding:0;
-}
-
-.ft-info li{
-    list-style:none;
-}
-
-.ft-links{
-    display:flex;
-    align-items:center;
-    gap:1rem;
-    flex-wrap:wrap;
-}
-
-.link{
-    text-decoration:none;
-    color:#222;
-}
-
-.link:hover{
-    color:#000;
-}
-
-.footerlink{
-    font-size:1.2rem;
-}
-
-.footerlink:hover{
-    opacity:.7;
-}
-
-.ft-info a{
-    color:#222;
-    text-decoration:none;
-}
-
-.ft-info a:hover{
-    text-decoration:underline;
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-    footer{
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .ft-info{
-        justify-content:center;
-    }
-
-    .ft-links{
-        justify-content:center;
-    }
-
-}
-
-/* card*/
-
-.listing-card{
-    border: none !important;
-    margin-bottom: 2rem;
-    border-radius: 1rem;
-}
-.card-img-top{
-    border-radius: 1rem;
-    width: 100% !important;
-    object-fit: cover !important;
-}
-.card-text p{
-    font-weight: 400 !important;
-    padding-top: 0px !important;
-}
-.card-link{
+.filter-item {
+    text-align: center;
     text-decoration: none;
-}
-.card-img-overlay{
-    opacity: 0;
-}
-.card-img-overlay:hover{
-    opacity: 0.2;
-    background-color: white;
-}
-
-
-/*new add form*/
-
-.btn{
-    /* background-color: red !important; */
-    border: none;
-    color: white;
-    width: 6rem;
-}
-/* show */
-
-.edit a{
-    text-decoration: none !important;
-    color: white;
+    color: #717171;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    padding-bottom: 0.25rem;
+    margin-left: 1.2rem;
+    border-bottom: 2px solid transparent;
 }
 
+.filter-item:hover,
+.filter-item.active {
+    color: #fe424d;
+    border-bottom: 2px solid #fe424d;
+}
 
-/*MAP */
-#map {
-    height :400px;
-    width: 80vh;
+.filter-item i {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.filter-item p {
+    margin: 0;
+}
+.nav-list:hover{
+    color:  #fe424d !important;
+   text-decoration: underline !important;
     
+}
+/* Listing Cards */
+.listing-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.listing-card .card-img-top {
+    height: 16rem;
+    object-fit: cover;
+}
+
+/* Show Page Image & Map */
+.show-img {
+    height: 26rem;
+    object-fit: cover;
+}
+
+#map {
+    height: 350px;
+    width: 100%;
+    border-radius: 8px;
 }

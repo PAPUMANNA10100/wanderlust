@@ -1,25 +1,43 @@
 const mapElement = document.getElementById("map");
 
-const mapToken = mapElement.dataset.token;
-const coordinates = JSON.parse(mapElement.dataset.coordinates);
-const listingLocation = mapElement.dataset.location;
+if (mapElement) {
+    const mapToken = mapElement.dataset.token;
+    let coordinates = [77.2090, 28.6139]; 
+    
+    try {
+        if (mapElement.dataset.coordinates) {
+            const parsed = JSON.parse(mapElement.dataset.coordinates);
+            if (Array.isArray(parsed) && parsed.length === 2 && !isNaN(parsed[0]) && !isNaN(parsed[1])) {
+                coordinates = parsed;
+            }
+        }
+    } catch (e) {
+        console.warn("Could not parse coordinates, using fallback:", e);
+    }
 
-mapboxgl.accessToken = mapToken;
+    const listingLocation = mapElement.dataset.location || "Exact location";
 
-const map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/mapbox/standard",
-    center: coordinates,
-    zoom: 9,
-});
+    if (mapToken && typeof mapboxgl !== "undefined") {
+        mapboxgl.accessToken = mapToken;
 
-new mapboxgl.Marker({ color: "green" })
-    .setLngLat(coordinates)
-    .setPopup(
-        new mapboxgl.Popup({ offset: 25 })
-            .setHTML(
-                `<h2>${listingLocation}</h2><p>Exact location provided after booking!</p>`
+        const map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/mapbox/streets-v12",
+            center: coordinates,
+            zoom: 9,
+        });
+
+        map.addControl(new mapboxgl.NavigationControl(), "top-right");
+
+        new mapboxgl.Marker({ color: "#fe424d" })
+            .setLngLat(coordinates)
+            .setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(
+                        `<h6 style="margin:0 0 5px; font-weight:700;">${listingLocation}</h6><p style="margin:0; font-size:12px; color:#666;">Exact location will be provided after booking</p>`
+                    )
+                    .setMaxWidth("300px")
             )
-            .setMaxWidth("300px")
-    )
-    .addTo(map);
+            .addTo(map);
+    }
+}
